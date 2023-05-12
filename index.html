@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script type="module">
+			import { regulateStorage } from './src/regulateStorage.js'
+			regulateStorage({
+				debug: true,
+				allow: ['a'],
+			})
+			try {
+				sessionStorage.setItem('a', 'good data')
+			} catch (e) {
+				console.error(e)
+			}
+
+			try {
+				localStorage.setItem('not-allowed', 'evil data')
+			} catch (e) {
+				console.error(e)
+			}
+		</script>
+	</head>
+	<body>
+		the info’s in the console...
+	</body>
+</html>
