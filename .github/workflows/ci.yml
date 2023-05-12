@@ -20,14 +20,11 @@ jobs:
                     - runtime: webkit
         steps:
             - uses: actions/checkout@v3
-
             - uses: pnpm/action-setup@v2.2.4
-
             - uses: actions/setup-node@v3
               with:
                   node-version-file: '.nvmrc'
                   cache: 'pnpm'
-
             - run: pnpm install --frozen-lockfile
 
             - name: Test
