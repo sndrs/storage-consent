@@ -2,6 +2,8 @@
 
 PoC approaches to only allow certain keys to be used to store data in the browser.
 
+See the tests or the console in the [demo page](https://sndrs.github.io/storage-consent/) for examples.
+
 -   [ ] Cookies
 -   [x] `localStorage`
 -   [x] `sessionStorage`
@@ -10,8 +12,6 @@ PoC approaches to only allow certain keys to be used to store data in the browse
 -   [ ] `WebSQL`?
 -   [ ] Cache API?
 -   [ ] Service Worker?
-
-See the console in the [demo page](https://sndrs.github.io/storage-consent/) for examples.
 
 ## Development
 

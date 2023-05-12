@@ -1,7 +1,10 @@
 {
 	"scripts": {
 		"dev": "vitest",
-		"coverage": "vitest run --coverage"
+		"test": "pnpm test:chromium && pnpm test:firefox && pnpm test:webkit",
+		"test:chromium": "vitest run --browser chromium",
+		"test:firefox": "vitest run --browser firefox",
+		"test:webkit": "vitest run --browser webkit"
 	},
 	"devDependencies": {
 		"@vitest/browser": "^0.31.0",
