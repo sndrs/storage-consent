@@ -12,12 +12,6 @@ env:
 jobs:
     test:
         runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                include:
-                    - runtime: chromium
-                    - runtime: firefox
-                    - runtime: webkit
         steps:
             - uses: actions/checkout@v3
             - uses: pnpm/action-setup@v2.2.4
@@ -25,7 +19,14 @@ jobs:
               with:
                   node-version-file: '.nvmrc'
                   cache: 'pnpm'
+
             - run: pnpm install --frozen-lockfile
 
-            - name: Test
-              run: pnpm vitest run --browser ${{ matrix.runtime }}
+            - name: Test chromium
+              run: pnpm vitest run --browser chromium
+
+            - name: Test webkit
+              run: pnpm vitest run --browser webkit
+
+            - name: Test firefox
+              run: pnpm vitest run --browser firefox
