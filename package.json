@@ -1,0 +1,18 @@
+{
+	"scripts": {
+		"dev": "vitest",
+		"test:chromium": "vitest run --browser chromium",
+		"test:firefox": "vitest run --browser firefox",
+		"test:webkit": "vitest run --browser webkit",
+		"coverage": "vitest run --coverage"
+	},
+	"devDependencies": {
+		"@vitest/browser": "^0.31.0",
+		"@vitest/ui": "^0.31.0",
+		"@vitest/utils": "^0.31.0",
+		"playwright": "^1.33.0",
+		"rollup": "^2.0.0",
+		"vitest": "^0.31.0"
+	},
+	"packageManager": "pnpm@8.5.0"
+}
