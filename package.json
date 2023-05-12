@@ -1,9 +1,6 @@
 {
 	"scripts": {
 		"dev": "vitest",
-		"test:chromium": "vitest run --browser chromium",
-		"test:firefox": "vitest run --browser firefox",
-		"test:webkit": "vitest run --browser webkit",
 		"coverage": "vitest run --coverage"
 	},
 	"devDependencies": {
