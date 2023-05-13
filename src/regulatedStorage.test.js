@@ -1,13 +1,25 @@
-import { beforeAll, beforeEach, describe, expect, it } from 'vitest'
-import { regulateStorage } from './regulateStorage'
+// @ts-check
 
-beforeAll(async () => {
-	regulateStorage({ allow: ['a', 'b'] })
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest'
+import { regulatedStorage } from './regulatedStorage'
+
+const { localStorage: _localStorage, sessionStorage: _sessionStorage } = window
+const allowedKeys = ['a', 'b']
+
+beforeAll(() => {
+	for (const storageType of ['localStorage', 'sessionStorage']) {
+		Object.defineProperty(window, storageType, {
+			value: regulatedStorage({
+				storageType,
+				allowedKeys,
+			}),
+		})
+	}
 })
 
 beforeEach(async () => {
-	window.localStorage.clear()
-	window.sessionStorage.clear()
+	_localStorage.clear()
+	_sessionStorage.clear()
 })
 
 describe.each(['localStorage', 'sessionStorage'])(
