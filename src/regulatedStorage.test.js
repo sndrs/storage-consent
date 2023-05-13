@@ -40,13 +40,13 @@ describe.each(['localStorage', 'sessionStorage'])(
 		it('should not permit disallowed keys to be set using setItem()', () => {
 			expect(() =>
 				window[storageType].setItem('not-allowed', 'invasive data'),
-			).toThrowError('Blocked saving `not-allowed` to ' + storageType)
+			).toThrowError("Blocked saving 'not-allowed' to " + storageType)
 		})
 
 		it('should not permit disallowed keys to be set using assignment', () => {
 			expect(
 				() => (window[storageType]['not-allowed'] = 'invasive data'),
-			).toThrowError('Blocked saving `not-allowed` to ' + storageType)
+			).toThrowError("Blocked saving 'not-allowed' to " + storageType)
 		})
 
 		it('should permit keys to be retrieved using getItem()', () => {
