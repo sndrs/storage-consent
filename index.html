@@ -11,28 +11,18 @@
 				const allowedKeys = ['allowed']
 
 				console.group('Allowed storage keys:')
-				allowedKeys.forEach((key) => console.log(`\`${key}\``))
+				allowedKeys.forEach((key) => console.log(`'${key}'`))
 				console.groupEnd()
 
-				Object.defineProperty(window, 'localStorage', {
-					configurable: true,
-					enumerable: true,
-					value: regulatedStorage({
-						storageType: 'localStorage',
-						allowedKeys,
-						debug: true,
-					}),
-				})
-
-				Object.defineProperty(window, 'sessionStorage', {
-					configurable: true,
-					enumerable: true,
-					value: regulatedStorage({
-						storageType: 'sessionStorage',
-						allowedKeys,
-						debug: true,
-					}),
-				})
+				for (const storageType of ['localStorage', 'sessionStorage']) {
+					Object.defineProperty(window, storageType, {
+						value: regulatedStorage({
+							storageType,
+							allowedKeys,
+							debug: true,
+						}),
+					})
+				}
 			} catch (e) {
 				// we need to use a proxy for this, so if it's not supported, we can't do anything
 				console.error(e)

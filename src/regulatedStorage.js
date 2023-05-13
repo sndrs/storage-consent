@@ -17,12 +17,12 @@ export const regulatedStorage = ({
 		set: function (target, prop, value) {
 			if (allowedKeys.includes(prop)) {
 				if (debug) {
-					console.log(`Saving \`${prop}\` to ${storageType}`)
+					console.log(`Saving '${prop}' to ${storageType}`)
 				}
 				target.setItem(prop, value)
 				return true
 			} else {
-				throw new Error(`Blocked saving \`${prop}\` to ${storageType}`)
+				throw new Error(`Blocked saving '${prop}' to ${storageType}`)
 			}
 		},
 
