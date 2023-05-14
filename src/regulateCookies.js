@@ -4,27 +4,33 @@ export const regulateCookies = function ({
 	allowedKeys = [],
 	debug = false,
 } = {}) {
-	const now = performance.now()
-	Object.defineProperty(document, 'cookie', {
-		configurable: true,
-		set(cookie) {
-			const [key] = cookie.split('=')
+	try {
+		const now = performance.now()
+		Object.defineProperty(document, 'cookie', {
+			configurable: true,
+			set(cookie) {
+				const [key] = cookie.split('=')
 
-			if (!allowedKeys.includes(key.trim())) {
-				throw new Error(`Blocked saving cookie called '${key}'`)
-			}
+				if (!allowedKeys.includes(key.trim())) {
+					throw new Error(`Blocked saving cookie called '${key}'`)
+				}
 
-			_cookie.set.call(document, cookie)
-			if (debug) {
-				console.debug(`Saved cookie called '${key}'`)
-			}
-		},
+				_cookie.set.call(document, cookie)
 
-		get: _cookie.get,
-	})
+				if (debug) {
+					console.debug(`Saved cookie called '${key}'`)
+				}
+			},
 
-	if (debug) {
-		console.debug(`Regulated cookies in ${performance.now() - now}ms`)
+			get: _cookie.get,
+		})
+
+		if (debug) {
+			console.debug(`Regulated cookies in ${performance.now() - now}ms`)
+		}
+	} catch (e) {
+		console.log('Unable to regulate cookies - it is open season!')
+		console.error(e)
 	}
 }
 

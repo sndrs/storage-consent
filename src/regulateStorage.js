@@ -40,23 +40,28 @@ const regulatedStorage = ({ storageType, allowedKeys, debug }) =>
 	})
 
 export const regulateStorage = ({ allowedKeys = [], debug = false } = {}) => {
-	for (const storageType of ['localStorage', 'sessionStorage']) {
-		const now = performance.now()
+	try {
+		for (const storageType of ['localStorage', 'sessionStorage']) {
+			const now = performance.now()
 
-		Object.defineProperty(window, storageType, {
-			configurable: true,
-			value: regulatedStorage({
-				storageType,
-				allowedKeys,
-				debug,
-			}),
-		})
+			Object.defineProperty(window, storageType, {
+				configurable: true,
+				value: regulatedStorage({
+					storageType,
+					allowedKeys,
+					debug,
+				}),
+			})
 
-		if (debug) {
-			console.debug(
-				`Proxied ${storageType} in ${performance.now() - now}ms`,
-			)
+			if (debug) {
+				console.debug(
+					`Proxied ${storageType} in ${performance.now() - now}ms`,
+				)
+			}
 		}
+	} catch (e) {
+		console.log('Unable to regulate storage - it is open season!')
+		console.error(e)
 	}
 }
 
