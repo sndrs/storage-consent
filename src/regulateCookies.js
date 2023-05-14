@@ -29,7 +29,7 @@ export const regulateCookies = function ({
 			console.debug(`Regulated cookies in ${performance.now() - now}ms`)
 		}
 	} catch (e) {
-		console.log('Unable to regulate cookies - it is open season!')
+		console.warn('Unable to regulate cookies - it is open season!')
 		console.error(e)
 	}
 }

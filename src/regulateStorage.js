@@ -60,7 +60,7 @@ export const regulateStorage = ({ allowedKeys = [], debug = false } = {}) => {
 			}
 		}
 	} catch (e) {
-		console.log('Unable to regulate storage - it is open season!')
+		console.warn('Unable to regulate storage - it is open season!')
 		console.error(e)
 	}
 }
