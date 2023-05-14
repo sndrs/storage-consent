@@ -17,10 +17,10 @@ const regulatedStorage = ({ storageType, allowedKeys, debug }) =>
 	new Proxy(window[storageType], {
 		set: function (target, prop, value) {
 			if (allowedKeys.includes(prop)) {
-				if (debug) {
-					console.log(`Saving '${prop}' to ${storageType}`)
-				}
 				target.setItem(prop, value)
+				if (debug) {
+					console.debug(`Saved '${prop}' to ${storageType}`)
+				}
 				return true
 			} else {
 				throw new Error(`Blocked saving '${prop}' to ${storageType}`)
@@ -44,6 +44,7 @@ export const regulateStorage = ({ allowedKeys = [], debug = false } = {}) => {
 		const now = performance.now()
 
 		Object.defineProperty(window, storageType, {
+			configurable: true,
 			value: regulatedStorage({
 				storageType,
 				allowedKeys,
@@ -52,7 +53,7 @@ export const regulateStorage = ({ allowedKeys = [], debug = false } = {}) => {
 		})
 
 		if (debug) {
-			console.log(
+			console.debug(
 				`Proxied ${storageType} in ${performance.now() - now}ms`,
 			)
 		}
@@ -66,7 +67,7 @@ export const restoreStorage = ({ debug = false } = {}) => {
 		Object.defineProperty(window, storageType, restorePoint[storageType])
 
 		if (debug) {
-			console.log(
+			console.debug(
 				`Restored ${storageType} in ${performance.now() - now}ms`,
 			)
 		}
