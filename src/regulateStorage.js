@@ -19,7 +19,7 @@ const regulatedStorage = ({ storageType, allowedKeys, debug }) =>
 			if (allowedKeys.includes(prop)) {
 				target.setItem(prop, value)
 				if (debug) {
-					console.debug(`Saved '${prop}' to ${storageType}`)
+					console.log(`Saved '${prop}' to ${storageType}`)
 				}
 				return true
 			} else {
@@ -54,7 +54,7 @@ export const regulateStorage = ({ allowedKeys = [], debug = false } = {}) => {
 			})
 
 			if (debug) {
-				console.debug(
+				console.log(
 					`Proxied ${storageType} in ${performance.now() - now}ms`,
 				)
 			}
@@ -72,7 +72,7 @@ export const restoreStorage = ({ debug = false } = {}) => {
 		Object.defineProperty(window, storageType, restorePoint[storageType])
 
 		if (debug) {
-			console.debug(
+			console.log(
 				`Restored ${storageType} in ${performance.now() - now}ms`,
 			)
 		}

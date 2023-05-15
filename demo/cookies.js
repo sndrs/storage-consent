@@ -18,10 +18,10 @@ console.groupEnd('Allowed cookie keys:')
 console.info('Regulating cookies')
 regulateCookies({ allowedKeys, debug: true })
 
-console.debug("Trying to set 'allowed' key")
+console.log("Trying to set 'allowed' key")
 document.cookie = 'allowed=good data'
 
-console.debug("Trying to set 'not-allowed' key")
+console.log("Trying to set 'not-allowed' key")
 try {
 	// this will error, so try/catching it
 	document.cookie = 'not-allowed=evil data'
@@ -34,10 +34,10 @@ console.info('document.cookie:', document.cookie)
 console.info('Restoring native Cookies')
 restoreCookies({ debug: true })
 
-console.debug("Trying to set 'allowed' key")
+console.log("Trying to set 'allowed' key")
 document.cookie = 'allowed=good data'
 
-console.debug("Trying to set 'not-allowed' key")
+console.log("Trying to set 'not-allowed' key")
 // doesn't error now, the native, unregulated localCookies
 // is has been restored
 document.cookie = 'not-allowed=evil data'

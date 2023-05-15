@@ -12,10 +12,10 @@ console.groupEnd('Allowed storage keys:')
 
 console.info('Regulating storage')
 regulateStorage({ allowedKeys, debug: true })
-console.debug("Trying to set 'allowed' key")
+console.log("Trying to set 'allowed' key")
 localStorage.setItem('allowed', 'good data')
 
-console.debug("Trying to set 'not-allowed' key")
+console.log("Trying to set 'not-allowed' key")
 try {
 	// this will error, so try/catching it
 	localStorage.setItem('not-allowed', 'evil data')
@@ -28,10 +28,10 @@ console.info(`localStorage`, Object.entries(localStorage))
 console.info('Restoring native storage')
 restoreStorage({ debug: true })
 
-console.debug("Trying to set 'allowed' key")
+console.log("Trying to set 'allowed' key")
 localStorage.setItem('allowed', 'good data')
 
-console.debug("Trying to set 'not-allowed' key")
+console.log("Trying to set 'not-allowed' key")
 // doesn't error now, the native, unregulated localStorage
 // is has been restored
 localStorage.setItem('not-allowed', 'evil data')

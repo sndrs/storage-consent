@@ -18,7 +18,7 @@ export const regulateCookies = function ({
 				_cookie.set.call(document, cookie)
 
 				if (debug) {
-					console.debug(`Saved cookie called '${key}'`)
+					console.log(`Saved cookie called '${key}'`)
 				}
 			},
 
@@ -26,7 +26,7 @@ export const regulateCookies = function ({
 		})
 
 		if (debug) {
-			console.debug(`Regulated cookies in ${performance.now() - now}ms`)
+			console.log(`Regulated cookies in ${performance.now() - now}ms`)
 		}
 	} catch (e) {
 		console.warn('Unable to regulate cookies - it is open season!')
@@ -40,6 +40,6 @@ export const restoreCookies = function ({ debug = false } = {}) {
 	Object.defineProperty(document, 'cookie', _cookie)
 
 	if (debug) {
-		console.debug(`Restored cookies in ${performance.now() - now}ms`)
+		console.log(`Restored cookies in ${performance.now() - now}ms`)
 	}
 }
